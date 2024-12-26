@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devine le mot</title>
+</head>
+<body>
+    <h1>Guess the Word</h1>
+    <p id="hint">Hint: It's a fruit</p>
+    <input type="text" id="guess" />
+    <button onclick="checkWord()">Guess</button>
+    <p id="message"></p>
+    <script>
+        const words = ["apple", "banana", "cherry", "date"];
+        const correctWord = words[Math.floor(Math.random() * words.length)];
+
+        function checkWord() {
+            const userGuess = document.getElementById('guess').value;
+            const message = document.getElementById('message');
+
+            if (userGuess.toLowerCase() === correctWord) {
+                message.textContent = "Congratulations! You guessed the word.";
+            } else {
+                message.textContent = "Wrong guess, try again!";
+            }
+        }
+    </script>
+</body>
+</html>

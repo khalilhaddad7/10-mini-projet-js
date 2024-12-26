@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de contact</title>
+</head>
+    <h1>Contact Us</h1>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your name" required /></form></br>
+        <input type="email" id="email" placeholder="Your email" required /></br></br>
+        <textarea id="message" placeholder="Your message" required></textarea></br>
+        <button type="submit">Send</button></br>
+    </form>
+    <p id="responseMessage"></p>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                document.getElementById('responseMessage').textContent = "Thank you for contacting us!";
+            } else {
+                document.getElementById('responseMessage').textContent = "Please fill all fields!";
+            }
+        });
+    </script>
+</body>
+</html>

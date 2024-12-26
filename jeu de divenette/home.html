@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de divenette</title>
+</head>
+<body>
+    <h1>Guess the Number</h1>
+    <p>Guess a number between 1 and 100</p>
+    <input type="number" id="guess" />
+    <button onclick="checkGuess()">Guess</button>
+    <p id="message"></p>
+     <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkGuess() {
+            const userGuess = document.getElementById('guess').value;
+            const message = document.getElementById('message');
+
+            if (userGuess == randomNumber) {
+                message.textContent = "Congratulations! You guessed correctly.";
+            } else if (userGuess < randomNumber) {
+                message.textContent = "Too low! Try again.";
+            } else {
+                message.textContent = "Too high! Try again.";
+            }
+        }
+    </script>
+</body>
+</html>
+
+Un nombre aléatoire entre 1 et 100 est généré lorsque la page est chargée.
+L'utilisateur entre une devinette dans un champ <input> (par exemple, un nombre comme "42").
+Lorsqu'il clique sur un bouton pour soumettre sa réponse, la fonction checkGuess est exécutée :
+Si la devinette est exacte, un message de félicitations s'affiche.
+Si la devinette est trop basse, un message indique "Too low! Try again."
+Si la devinette est trop haute, un message indique "Too high! Try again."

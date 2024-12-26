@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do list</title>
+</head>
+<style>
+    .completed {
+        text-decoration: line-through; /* Barre le texte de la tâche */
+        color: gray; /* Change la couleur pour montrer qu'elle est terminée */
+    }
+</style>
+<body>
+ <h1>to-do list</h1>
+ <input type="text" id="taskinput" placeholder="Add a task" />
+ <button onclick="addtask()">Add task</button>
+ <ul id="tasklist"></ul>
+ <script>
+    
+    const tasks = [] ;
+    function addtask(){
+        const taskinput = document.getElementById("taskinput")
+        const task = taskinput.value;
+        if(task){
+            tasks.push(task);
+            taskinput.value=''; // clear input 
+            rendertasks();
+        }
+    }
+
+    function rendertasks(){
+        const tasklist = document.getElementById("tasklist")
+        tasklist.innerHTML='';
+        tasks.forEach((task,index)=>{
+            const li = document.createElement("li")
+            li.innerHTML = `${task} <button onclick="removeTask(${index})">Remove</button> 
+                            <button onclick="toggleCompleted(${index})">Complete</button>`;
+
+            tasklist.appendChild(li);
+            
+        });
+    }
+
+    function removeTask(index) {
+        tasks.splice(index,1)
+        rendertasks()
+    }
+
+    function toggleCompleted(index){
+        const tasklist = document.getElementById("tasklist")
+        const taskitem = tasklist.children[index];
+        taskitem.classList.toggle('completed')
+        
+        
+    }
+ </script>
+</body>
+</html>
+
+
+addTask() : Ajoute une tâche à la liste des tâches et réaffiche la liste.
+renderTasks() : Rafraîchit l'affichage de la liste des tâches.
+removeTask(index) : Supprime une tâche de la liste.
+toggleCompleted(index) : Marque une tâche comme terminée ou non (en utilisant la classe CSS completed).

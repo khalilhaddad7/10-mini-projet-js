@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronometre</title>
+</head>
+<body>
+    <h1>Chronometer</h1>
+    <p id="time">0</p>
+    <button onclick="startChronometer()">Start</button>
+    <button onclick="stopChronometer()">Stop</button>
+    <button onclick="resetChronometer()">Reset</button>
+    <script>
+        let timer;
+        let seconds = 0; 
+        function startChronometer(){
+            if (!timer){
+                timer = setInterval(function(){
+                    seconds ++;
+                    document.getElementById('time').textContent=seconds;
+
+                },100)
+            }
+        }
+
+        function stopChronometer(){
+            clearInterval(timer)
+            timer=null
+        }
+
+        function resetChronometer(){
+            clearInterval(timer);
+            timer = null;
+            seconds = 0;
+            document.getElementById('time').textContent = seconds
+        }
+
+        
+    </script>
+</body>
+</html>
+
+
+Au clic sur "Start" :
+
+Si le chronomètre est arrêté, la fonction startChronometer est exécutée.
+Un intervalle est lancé, incrémentant la variable seconds toutes les 100 millisecondes.
+L'élément HTML <p id="time"> est mis à jour avec la valeur de seconds.
+Au clic sur "Stop" :
+
+La fonction stopChronometer est exécutée.
+L'exécution de l'intervalle (incrémentation) est stoppée.
+Au clic sur "Reset" :
+
+La fonction resetChronometer est exécutée.
+Le chronomètre est stoppé et réinitialisé à zéro.
+L'affichage est également mis à jour.

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur d'unités</title>
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    <input type="number" id="inputValue" />
+    <select id="unitFrom">
+        <option value="km">Kilometers</option>
+        <option value="m">Meters</option>
+    </select>
+    <p>to</p>
+    <select id="unitTo">
+        <option value="m">Meters</option>
+        <option value="km">Kilometers</option>
+    </select>
+    <button onclick="convertUnits()">Convert</button>
+    <p id="output"></p>
+    <script>
+        function convertUnits(){
+            const value = document.getElementById('inputValue').value;
+            const unitFrom = document.getElementById('unitFrom').value;
+            const unitTo = document.getElementById('unitTo').value;
+            let result;
+            if (unitFrom === 'km' && unitTo === 'm') {
+                result = value * 1000;
+            } else if (unitFrom === 'm' && unitTo === 'km') {
+                result = value / 1000;
+            }
+
+            document.getElementById('output').textContent = `Result: ${result}`;
+        }
+        
+    </script>
+</body>
+</html>

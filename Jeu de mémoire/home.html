@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        .card {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Memory Game</h1>
+    <div id="gameBoard"></div>
+
+    <script>
+        const cards = ['A', 'B', 'C', 'A', 'B', 'C'];
+        let selectedCards = [];
+        let matchedCards = [];
+
+        function shuffleCards() {
+            return cards.sort(() => Math.random() - 0.5);
+        }
+
+        function renderGameBoard() {
+            const shuffledCards = shuffleCards();
+            const gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            shuffledCards.forEach((card, index) => {
+                const div = document.createElement('div');
+                div.classList.add('card');
+                div.textContent = card;
+                div.onclick = () => handleCardClick(index);
+                gameBoard.appendChild(div);
+            });
+        }
+
+        function handleCardClick(index) {
+            if (selectedCards.length < 2 && !matchedCards.includes(index)) {
+                selectedCards.push(index);
+                renderGameBoard();
+
+                if (selectedCards.length === 2) {
+                    const [firstIndex, secondIndex] = selectedCards;
+                    if (cards[firstIndex] === cards[secondIndex]) {
+                        matchedCards.push(firstIndex, secondIndex);
+                    }
+                    selectedCards = [];
+                    renderGameBoard();
+                }
+            }
+        }
+
+        renderGameBoard();
+    </script>
+</body>
+</html>
